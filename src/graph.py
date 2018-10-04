@@ -101,12 +101,22 @@ class Graph:
                 Q.append(edge)
       return CC
     
-    # TODO: Implement Stack class
+    
     def dfs(self, s):
       """
-      Vanilla version of the DFS algorithms. dfs() returns an array M which corresponds to the adjancecy list of visited/explored vertices. The difference between 
+      Vanilla version of the DFS algorithm. dfs() returns an array M which corresponds to the adjancecy list of visited/explored vertices. The difference between 
       dfs() and bfs() is the way it explores the graph and the data structure used
       to iterate between the vertices.
-      S is a stack data structure
+      S is a stack data structure. Using append() and pop() to simulate it.
       """
-      pass
+      M = [0 for v in self.v]
+      S = [s]
+      while S:
+        v = S.pop()
+        if M[v] == 0:
+            M[v] = 1
+            for i in self.e[v]:
+                S.append(i)
+      return M
+
+      
