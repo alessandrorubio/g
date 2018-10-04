@@ -54,25 +54,15 @@ class Graph:
       M = [0 for v in self.v]
       P = [0 for v in self.v]
       M[s] = 1
-      distance = 0
       P[s] = 0
       Q = [s]
-      
-      # BUG: With the following test graph:
-      # v = [0, 1, 2, 3, 4, 5, 6], 
-      # e = [[1, 3], [0, 2], [1], [0, 4], [3], [6], [5]]
-      # Calling bfs_path(0) returns P = [0, 1, 2, 1, 3, 0, 0]
-      # but the right answer is P = [0, 1, 2, 1, 2, 0, 0]
-      # it may be because the moment when it reaches vertex 2
-      # the variable distance is changed.
       while Q:
-        distance += 1
         w = Q[0]
         Q.remove(w)
         for i in self.e[w]:
           if M[i] == 0:
             M[i] = 1
-            P[i] = distance
+            P[i] = P[w] + 1
             Q.append(i)
       return P
     
@@ -101,7 +91,7 @@ class Graph:
                 Q.append(edge)
       return CC
     
-    
+
     def dfs(self, s):
       """
       Vanilla version of the DFS algorithm. dfs() returns an array M which corresponds to the adjancecy list of visited/explored vertices. The difference between 
