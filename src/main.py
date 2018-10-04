@@ -13,7 +13,7 @@ def main():
 
 	print(g)
 	print(g.bfs(2))
-	print(g.bfs_path(1))
+	print(g.bfs_path(0))
 	print(g.ucc())
 	print(g.dfs(0))
 
