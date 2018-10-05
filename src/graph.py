@@ -23,8 +23,6 @@ class Graph:
             ans += "\t" + str(self.v[i]) + ": " + str(self.e[i]) + "\n"
         return ans
 
-   
-    # TODO: Create a Queue class
     def bfs(self, s):
       """
       Vanilla version of the BFS algorithm, each iteration 
