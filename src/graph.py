@@ -20,7 +20,7 @@ class Graph:
         """
         ans = 'Vertices :\n'
         for i in range(len(self.v)):
-            ans += str(self.v[i]) + ": " + str(self.e[i]) + "\n"
+            ans += "\t" + str(self.v[i]) + ": " + str(self.e[i]) + "\n"
         return ans
 
    
@@ -121,17 +121,20 @@ class Graph:
         M = [0 for v in self.v]
         P = [0 for v in self.v]
         S = []
+        Q = []
         current = len(self.v)
 
         for vertex in self.v:
             if M[vertex] == 0:
                 S.append(vertex)
+                
                 while S:
                     v = S.pop()
+                    Q.append(v)
                     if M[v] == 0:
                         M[v] = 1
                         for w in self.e[v]:
                             S.append(w)
                         P[v] = current
                         current -= 1
-        return P
+        return Q
