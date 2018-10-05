@@ -27,7 +27,8 @@ class Graph:
     # TODO: Create a Queue class
     def bfs(self, s):
       """
-      Vanilla version of the BFS algorithm, each iteration explores a new vertex that is connected to s.
+      Vanilla version of the BFS algorithm, each iteration 
+      explores a new vertex that is connected to s.
       M corresponds to the adjacency list of visited vertices.
       Q is a Queue.
       s is the starting point vertex.
@@ -47,7 +48,8 @@ class Graph:
     
     def bfs_path(self, s):
       """
-      Path version of the BFS algorithm. This versions returns an array P which every vertex corresponds to the distance between s and v.
+      Path version of the BFS algorithm. This version returns an array P which
+      every vertex corresponds to the distance between s and v.
       Q is a Queue type data structure.
       M corresponds to the adjacency list of visited vertices.
       """
@@ -94,9 +96,10 @@ class Graph:
 
     def dfs(self, s):
       """
-      Vanilla version of the DFS algorithm. dfs() returns an array M which corresponds to the adjancecy list of visited/explored vertices. The difference between 
-      dfs() and bfs() is the way it explores the graph and the data structure used
-      to iterate between the vertices.
+      Vanilla version of the DFS algorithm. dfs() returns an array M
+      which corresponds to the adjancecy list of visited/explored vertices.
+      The difference between dfs() and bfs() is the way it explores the graph 
+      and the data structure usedto iterate between the vertices.
       S is a stack data structure. Using append() and pop() to simulate it.
       """
       M = [0 for v in self.v]
@@ -109,4 +112,26 @@ class Graph:
                 S.append(i)
       return M
 
-      
+    def topoSort(self):
+        """
+        Topological sorting using DFS algorithm. It returns
+        a list P which every index corresponds to the order of the
+        topological sort (from 1 to n).
+        """
+        M = [0 for v in self.v]
+        P = [0 for v in self.v]
+        S = []
+        current = len(self.v)
+
+        for vertex in self.v:
+            if M[vertex] == 0:
+                S.append(vertex)
+                while S:
+                    v = S.pop()
+                    if M[v] == 0:
+                        M[v] = 1
+                        for w in self.e[v]:
+                            S.append(w)
+                        P[v] = current
+                        current -= 1
+        return P
