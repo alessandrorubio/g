@@ -125,14 +125,12 @@ class Graph:
         for vertex in self.v:
             if M[vertex] == 0:
                 S.append(vertex)
-                
                 while S:
                     v = S.pop()
-                    Q.append(v)
                     if M[v] == 0:
                         M[v] = 1
                         for w in self.e[v]:
                             S.append(w)
                         P[v] = current
                         current -= 1
-        return Q
+        return P[::-1]
