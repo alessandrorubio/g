@@ -5,44 +5,43 @@
 
 
 class Graph:
-    def __init__(self, v, e):
+    def __init__(self, v):
         """
-        Initializer of Graph. We suppose v is a list
-        of vertices and e the adjacency list.
+        Initializer of Graph. We suppose v is a dictionnary where
+        keys are the vertices and the values are the edges. We store
+        the visited edges in a set.
         """
         self.v = v
-        self.e = e
+        self.explored_vertices = set()
 
     def __repr__(self):
         """
         Representation of Graph. It prints vertices and edges in
         dictionnary way.
         """
-        ans = 'Vertices :\n'
-        for i in range(len(self.v)):
-            ans += "\t" + str(self.v[i]) + ": " + str(self.e[i]) + "\n"
+        ans = ''
+        for vertex, edge in self.v.items():
+          ans += str(vertex) + ' -> ' + str(edge) +'\n'
         return ans
 
     def bfs(self, s):
       """
       Vanilla version of the BFS algorithm, each iteration 
       explores a new vertex that is connected to s.
-      M corresponds to the adjacency list of visited vertices.
       Q is a Queue.
       s is the starting point vertex.
-      It returns the M.
+      It returns the set of explored vertices.
       """
-      M = [0 for v in self.v]
-      M[s] = 1
+      self.explored_vertices.add(s)
       Q = [s]
       while Q:
         w = Q[0]
         Q.remove(w)
-        for i in self.e[w]:
-          if M[i] == 0:
-            M[i] = 1
+        for i in self.v[w]:
+          if i not in self.explored_vertices:
+            self.explored_vertices.add(i)
             Q.append(i)
-      return M
+      return self.explored_vertices
     
     def bfs_path(self, s):
       """
