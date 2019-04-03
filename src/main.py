@@ -1,7 +1,3 @@
-# Main class, or testing area
-#
-# Author Alessandro Rubio Moraes
-
 from graph import Graph
 
 
