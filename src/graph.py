@@ -1,9 +1,3 @@
-# Simple graph class to help me understand
-# graphs algorithms and some data structures.
-# 
-# Author: Alessandro Rubio Moraes
-
-
 class Graph:
     def __init__(self, v):
         """
